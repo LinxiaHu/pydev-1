@@ -3,7 +3,9 @@
 import math
 import sys
 import io
-
+import codecs
+import os
+import ConfigParser as cp
 
 # python函数式编程
 # 变量可以指向函数
@@ -132,3 +134,50 @@ for line in iter_f:
 
 print lines
 
+f.close()
+
+fw = codecs.open('d:\\test\\pywrite.txt', 'w', 'utf-8') # 若文件不存在则创建
+
+print fw.encoding
+
+print '文件描述符是%d:' % fw.fileno()
+
+fw.write(u'测试字符，中国') # 存在写缓存，要调用flush或者close方法才会写入硬盘，
+                    #但写入内容大于内核缓存区大小的话会自动写硬盘，但多余的还是在清空后的缓存中
+
+print 'fw.tell:%d' % fw.tell()
+
+fw.close() # 一定要关闭，系统打开文件数量是有限制的
+
+print sys.stdin.fileno()
+print sys.stdout.fileno()
+print sys.stderr.fileno()
+
+print '------------------------------'
+
+fos = os.open('d:\\test\\pyosfile.txt', os.O_CREAT) # 不存在则创建
+
+print fos # win下不支持os.write(),无法识别文件描述符
+
+
+print os.listdir('d:\\test')
+
+
+print '------------------------------'
+
+cfg = cp.ConfigParser()
+cfg.read('d:\\test\\cfg.ini')
+print cfg
+sections = cfg.sections()
+print sections
+
+for se in sections:
+    print se
+    print cfg.items(se)
+    
+cfg.set('userinfo', 'email', 'a@123.com')
+
+
+for se in sections:
+    print se
+    print cfg.items(se)
