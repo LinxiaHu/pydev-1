@@ -13,8 +13,20 @@ conn = db.Connect(host='127.0.0.1',
 
 curser = conn.cursor()
 
-print curser
-print conn
+sql = "select uid, loginname from t_user"
+curser.execute(sql)
+# print curser.rowcount
+# rs = curser.fetchone()
+# print rs
+
+rs = curser.fetchall()
+print rs
+for row in rs:
+    print "userid = %s, loginname = %s" % row
+
+
+# print curser
+# print conn
 
 curser.close()
 conn.close()
