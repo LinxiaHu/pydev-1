@@ -1,8 +1,8 @@
 # coding:utf-8
 
 import math
-
-
+import sys
+import io
 
 
 # python函数式编程
@@ -113,3 +113,22 @@ print isinstance(p, Person)
 
 
 print '------------------------------'
+
+# file
+f = open('d:\\test\\ssb3_link.h', 'r')
+# print f.readline() # 读取1行，若传入数字，则读取相应个字节，而不再是行
+# print '++++++++++++++++++++++++++++++'
+# print f.read(1024) # 读取字节
+# 
+# list_c = f.readlines() # 返回由行组成的列表,但最多只有io模块对于的8192个字节左右
+# print list_c
+# print list_c[0]
+# print '++++++++++++++++++++++++++++++'
+iter_f = iter(f) # 使用迭代器读取文件,推荐使用
+lines = 0
+for line in iter_f:
+    lines += 1
+    print line
+
+print lines
+
