@@ -57,7 +57,7 @@ class BDTB:
         # 是否写入楼分隔符的标记
         self.floorTag = floorTag
  
-    # 传入页码，获取该页帖子的代码
+    # 传入页码，获取该页帖子的代码,这里包括了用户输入的数据
     def getPage(self, pageNum):
         try:
             # 构建URL
@@ -145,6 +145,7 @@ class BDTB:
             
 if __name__ == '__main__':
     # 3513281888 代号后面需要输入类似前面的串
+    # 完整路径如下：http://tieba.baidu.com/p/3513281888?see_lz=1&pn=1
     print u"请输入帖子代号"
     baseURL = 'http://tieba.baidu.com/p/' + str(raw_input(u'http://tieba.baidu.com/p/'))
     seeLZ = raw_input("是否只获取楼主发言，是输入1，否输入0\n")
