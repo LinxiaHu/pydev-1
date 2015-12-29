@@ -6,3 +6,5 @@ encoding//com/hd/gentest/test.py=utf-8
 encoding//com/hd/gentest/\u7530\u5A9B\u5A9B/\u7530\u5A9B\u5A9B.txt=UTF-8
 encoding//com/hd/gentest/\u767E\u5EA6\u8D34\u5427.txt=UTF-8
 encoding//com/hd/mysql/connect_test.py=utf-8
+encoding//com/hd/rabbitmq/connect_test.py=utf-8
+encoding//com/hd/re/retest.py=utf-8
