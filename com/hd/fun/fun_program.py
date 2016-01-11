@@ -1,11 +1,16 @@
 # coding:utf-8
 
-import math
-import sys
-import io
+from __builtin__ import int
 import codecs
+import io
+import math
 import os
+import sys
+
+from numpy import integer
+
 import ConfigParser as cp
+
 
 # python函数式编程
 # 变量可以指向函数
@@ -81,7 +86,7 @@ class Person(object):
     address = 'Earth'  # 类属性,当实例属性和类属性重名时，实例属性优先级高，它将屏蔽掉对类属性的访问
     
     @classmethod
-    def how_many(self): # 类方法
+    def how_many(self):  # 类方法
         return Person.address
     
     def __init__(self, name):
@@ -103,7 +108,7 @@ print Person.how_many()
 
 class Student(Person):
     def __init__(self, name, score):
-        super(Student, self).__init__(name) #父类构造：def __init__(self, name):
+        super(Student, self).__init__(name)  # 父类构造：def __init__(self, name):
         self.score = score
 
 s = Student('王五', '99')
@@ -126,7 +131,7 @@ f = open('d:\\test\\ssb3_link.h', 'r')
 # print list_c
 # print list_c[0]
 # print '++++++++++++++++++++++++++++++'
-iter_f = iter(f) # 使用迭代器读取文件,推荐使用
+iter_f = iter(f)  # 使用迭代器读取文件,推荐使用
 lines = 0
 for line in iter_f:
     lines += 1
@@ -136,18 +141,18 @@ print lines
 
 f.close()
 
-fw = codecs.open('d:\\test\\pywrite.txt', 'w', 'utf-8') # 若文件不存在则创建
+fw = codecs.open('d:\\test\\pywrite.txt', 'w', 'utf-8')  # 若文件不存在则创建
 
 print fw.encoding
 
 print '文件描述符是%d:' % fw.fileno()
 
-fw.write(u'测试字符，中国') # 存在写缓存，要调用flush或者close方法才会写入硬盘，
-                    #但写入内容大于内核缓存区大小的话会自动写硬盘，但多余的还是在清空后的缓存中
+fw.write(u'测试字符，中国')  # 存在写缓存，要调用flush或者close方法才会写入硬盘，
+                    # 但写入内容大于内核缓存区大小的话会自动写硬盘，但多余的还是在清空后的缓存中
 
 print 'fw.tell:%d' % fw.tell()
 
-fw.close() # 一定要关闭，系统打开文件数量是有限制的
+fw.close()  # 一定要关闭，系统打开文件数量是有限制的
 
 print sys.stdin.fileno()
 print sys.stdout.fileno()
@@ -155,9 +160,9 @@ print sys.stderr.fileno()
 
 print '------------------------------'
 
-fos = os.open('d:\\test\\pyosfile.txt', os.O_CREAT) # 不存在则创建
+fos = os.open('d:\\test\\pyosfile.txt', os.O_CREAT)  # 不存在则创建
 
-print fos # win下不支持os.write(),无法识别文件描述符
+print fos  # win下不支持os.write(),无法识别文件描述符
 
 
 print os.listdir('d:\\test')
@@ -181,3 +186,45 @@ cfg.set('userinfo', 'email', 'a@123.com')
 for se in sections:
     print se
     print cfg.items(se)
+    
+print '------------------------------'
+# 闭包
+def set_pass(passline):
+    def cmp(val):
+        if val > passline:
+            print("pass")
+        else:
+            print("fail")
+    return cmp
+            
+fun_100 = set_pass(60)
+fun_100(59)
+fun_100(61)
+fun_150 = set_pass(90)
+fun_150(89)
+fun_150(91)
+
+print '------------------------------'
+# 装饰器
+def dec(func):
+    print("call dec")
+    def in_dec(*arg):
+        if len(arg) == 0:
+            return 0
+        for val in arg:
+            if not isinstance(val, int):
+                return 0
+        return func(*arg)
+    return in_dec()
+
+def my_sum(*arg):
+    print ("in my_sum")
+    return sum(arg)
+my_sum = dec(my_sum())
+# my_sum(1,2,3,4,5)
+
+
+# def my_average(*arg):
+#     print ("in my_average")
+#     return sum(arg) / len(arg)
+# my_average(1,2,3,4,5)    
