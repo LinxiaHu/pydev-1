@@ -7,7 +7,7 @@ import math
 import os
 import sys
 
-from numpy import integer
+# from numpy import integer
 
 import ConfigParser as cp
 
@@ -122,7 +122,7 @@ print isinstance(p, Person)
 print '------------------------------'
 
 # file
-f = open('d:\\test\\ssb3_link.h', 'r')
+f = open('e:\\test\\ssb3_link.h', 'r')
 # print f.readline() # 读取1行，若传入数字，则读取相应个字节，而不再是行
 # print '++++++++++++++++++++++++++++++'
 # print f.read(1024) # 读取字节
@@ -141,7 +141,7 @@ print lines
 
 f.close()
 
-fw = codecs.open('d:\\test\\pywrite.txt', 'w', 'utf-8')  # 若文件不存在则创建
+fw = codecs.open('e:\\test\\pywrite.txt', 'w', 'utf-8')  # 若文件不存在则创建
 
 print fw.encoding
 
@@ -160,18 +160,17 @@ print sys.stderr.fileno()
 
 print '------------------------------'
 
-fos = os.open('d:\\test\\pyosfile.txt', os.O_CREAT)  # 不存在则创建
+fos = os.open('e:\\test\\pyosfile.txt', os.O_CREAT)  # 不存在则创建
 
 print fos  # win下不支持os.write(),无法识别文件描述符
 
 
-print os.listdir('d:\\test')
-
+print os.listdir('e:\\test')
 
 print '------------------------------'
 
 cfg = cp.ConfigParser()
-cfg.read('d:\\test\\cfg.ini')
+cfg.read('e:\\test\\cfg.ini')
 print cfg
 sections = cfg.sections()
 print sections
